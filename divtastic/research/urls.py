@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import research
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.divtastic_landing, name="landing_page"),
-    path('research/', include('research.urls'))
+    path('new_profile/', views.symbol_research, name='new_stock_profile'),
+    path('', views.redirect_app_root)
+
 ]
