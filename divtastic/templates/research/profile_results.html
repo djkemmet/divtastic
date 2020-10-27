@@ -1,0 +1,21 @@
+{% extends 'root/base.html' %}
+
+
+{% block content %}
+    {% if message %}
+        <h1>{{ symbol }}'s Profile</h1>
+        <ul>
+            <li> The symbol you requested is: <b>{{ symbol }}</b></li>
+            <li> The Dividend Declaration Date is: <b>{{ declaration_date }}</b></li>
+            <li> The Current Price-to-Earning Ration is: <b>{{ pte_ratio }}</b></li>
+            <li> The Dividend Payout Ratio is: <b>{{ payout_ratio }}</b></li>
+            <li> The Next Dividend Payout Date is: <b>{{ payout_date }}</b></li>
+            <li> The Record Rate is: <b>{{ record_date }}</b></li>
+            <li> The Current Dividend Yeild is: <b>{{ dividend_yeild }}</b></li>
+
+        </ul>
+       
+        Whose Declaration Date Is:
+
+    {% endif %}
+{% endblock%}

@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+APP_NAME = 'research'
+
 urlpatterns = [
     path('new_profile/', views.symbol_research, name='new_stock_profile'),
     path('', views.redirect_app_root)
