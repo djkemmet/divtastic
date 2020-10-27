@@ -14,8 +14,14 @@ def symbol_research(request):
     if form.is_valid():
         form.save(commit=True)
         data = dict()
-        data['message'] = "Your results for: %s" %(request.POST['symbol'])
-        data['symbol'] = request.POST['symbol']
+        data['symbol'] = request.POST['symbol'].upper()
+
+        # These Come from dividend.com page scrape
+        data['company_name'] = 'Source From Dividend.com'
+        data['tax_type'] = 'Source From Dividend.com'
+
+
+
         data['declaration_date'] = "Find it"
         data['pte_ratio'] = 'Find it.'
         data['payout_ratio'] = 'Find it.'

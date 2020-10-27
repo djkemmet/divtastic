@@ -2,20 +2,37 @@
 
 
 {% block content %}
-    {% if message %}
-        <h1>{{ symbol }}'s Profile</h1>
-        <ul>
-            <li> The symbol you requested is: <b>{{ symbol }}</b></li>
-            <li> The Dividend Declaration Date is: <b>{{ declaration_date }}</b></li>
-            <li> The Current Price-to-Earning Ration is: <b>{{ pte_ratio }}</b></li>
-            <li> The Dividend Payout Ratio is: <b>{{ payout_ratio }}</b></li>
-            <li> The Next Dividend Payout Date is: <b>{{ payout_date }}</b></li>
-            <li> The Record Rate is: <b>{{ record_date }}</b></li>
-            <li> The Current Dividend Yeild is: <b>{{ dividend_yeild }}</b></li>
+        <h1>{{ symbol }} - {{ company_name }}</h1>
+        <div class="container">
+            <div class="row-flex" style="width:100%;">
+                <center>
+                    <h2> Report Card</h2>
 
-        </ul>
+                    <table border=1>
+                        <tr>
+                            <th> Symbol Name</th>
+                            <th> Dividend Declaration Date</th>
+                            <th> Price-to-Earnings Ratio</th>
+                            <th> Dividend Payout Ratio</th>
+                            <th> Current Record Date</th>
+                            <th> Current Dividend Yeild</th>
+                        </tr>
+                        <tr>
+                            <td> {{ symbol }}</td>
+                            <td> {{ declaration_date}}</td>
+                            <td> {{ pte_ratio }}</td>
+                            <td> {{ payout_ratio }}</td>
+                            <td> {{ record_date}}</td>
+                            <td> {{ dividend_yeild }}</td>
+
+                        </tr>
+                    </table>
+                </center>
+
+            </div> <!-- End Report Card Row-->
+        </div> <!-- End Container.-->
+
        
         Whose Declaration Date Is:
 
-    {% endif %}
 {% endblock%}
