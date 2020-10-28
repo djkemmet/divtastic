@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import symbol_lookup_form
+from research.functions import *
 
 # Create your views here.
 def symbol_research(request):
@@ -16,13 +17,15 @@ def symbol_research(request):
         data = dict()
         data['symbol'] = request.POST['symbol'].upper()
 
+        dividend_com_data = scrape_dividend_com(request.POST['symbol'])
+
         # These Come from dividend.com page scrape
         data['company_name'] = 'Source From Dividend.com'
         data['tax_type'] = 'Source From Dividend.com'
-
-
-
         data['declaration_date'] = "Find it"
+
+
+
         data['pte_ratio'] = 'Find it.'
         data['payout_ratio'] = 'Find it.'
         data['payout_date'] = 'Find it.'
