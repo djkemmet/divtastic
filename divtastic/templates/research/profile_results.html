@@ -2,36 +2,117 @@
 
 
 {% block content %}
-        <h1>{{ symbol }} - {{ company_name }}</h1>
+        <h1 style="padding:.5em;">{{ symbol }} - {{ yfinance_data.shortName }}</h1>
+        <b>Website:</b> {{ yfinance_data.website}} <br />
+        <b>Sector:</b> {{ yfinance_data.sector}}
         <div class="container">
             <div class="row-flex" style="width:100%;">
                 <center>
                     <h2> Report Card</h2>
+                    <hr />
+                    <p>
+                        The Report card is where we aggregate key factors and do a little math to
+                        determine the stock's investment worthiness
+                    </p>
 
                     <table border=1>
                         <tr>
-                            <th> Symbol Name</th>
-                            <th> Dividend Declaration Date</th>
-                            <th> Price-to-Earnings Ratio</th>
-                            <th> Dividend Payout Ratio</th>
-                            <th> Current Record Date</th>
-                            <th> Current Dividend Yeild</th>
+                            <th style="padding:1em;text-align:center;">Symbol Name</th>
+                            <th style="padding:1em;text-align:center;">Previous Close</th>
+                            <th style="padding:1em;text-align:center;">Dividend Declaration Date</th>
+                            <th style="padding:1em;text-align:center;">Price-to-Earnings Ratio</th>
+                            <th style="padding:1em;text-align:center;">Dividend Payout Ratio</th>
+                            <th style="padding:1em;text-align:center;">Current Record Date</th>
+                            <th style="padding:1em;text-align:center;">Current Dividend Yeild</th>
+                            <th style="padding:1em;text-align:center;">Current Trailing Dividend Yeild</th>
+                            
                         </tr>
                         <tr>
-                            <td> {{ symbol }}</td>
-                            <td> {{ declaration_date}}</td>
-                            <td> {{ pte_ratio }}</td>
-                            <td> {{ payout_ratio }}</td>
-                            <td> {{ record_date}}</td>
-                            <td> {{ dividend_yeild }}</td>
+                            <td style="text-align:center; padding:.5em;"> {{ symbol }}</td>
+                            <td style="text-align:center; padding:.5em;"> {{ yfinance_data.previousClose }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ declaration_date}}</td>
+                            <td style="text-align:center; padding:.5em;">{{ pte_ratio }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ payout_ratio }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ record_date}}</td>
+                            <td style="text-align:center; padding:.5em;">{{ dividend_yeild }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ yfinance_data.trailingAnnualDividendYield }}</td>
                         </tr>
                     </table>
                 </center>
 
             </div> <!-- End Report Card Row-->
+            <div class="row-flex" style="padding:1em;">
+                <center>
+                    <h2>About {{ yfinance_data.shortName }}</h2>
+                    <hr />
+                </center>
+                {{ yfinance_data.longBusinessSummary}}
+            </div>
+            <div class="row-flex" style="padding:1em;">
+                <h2>Let's Consider The Factors</h2>
+                <p>In this section, we'll review the information in the Profile Report Card as they compare to your
+                investment profile. you can use this information to determine if you want execute a <b>New Postition Playbook</b>.
+                </p>
+                <table>
+                    <tr>
+                        <td style="padding:1em;text-align:left;"><h4>Previous Close<h4></td>
+                        <td>
+                            {{yfinance_data.shortName }} costs around <b> {{ yfinance_data.previousClose}}</b> per share. This stock is <b><style="text-color:red;">50 dollars more</style></b> per share than
+                            your desired median postion cost. Given the great difference between the cost of the stock and your desired
+                            median position cost, taking a position would carry <b>SIGNIFICANT RISK</b>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:1em;text-align:center;"><h4>Dividend Declaration Date<h4></td>
+                        <td>
+                            When this feature is working correctly this page will explain to you where you are in the dividend investment cycle. If
+                            you took a position today, would you qualify for the next dividend payment or would you be waiting? <b> {{ yfinance}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:1em;text-align:center;"><h4>Dividend Record Date<h4></td>
+                        <td>
+                            When this feature is working correctly this page will explain to you where you are in the dividend investment cycle. If
+                            you took a position today, would you qualify for the next dividend payment or would you be waiting? <b> {{ yfinance}}
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:1em;text-align:center;"><h4>Price-to-Earning Ratio<h4></td>
+                        <td>
+                            When this feature is working correctly this page will explain to you where you are in the dividend investment cycle. If
+                            you took a position today, would you qualify for the next dividend payment or would you be waiting? <b> {{ yfinance}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:1em;text-align:center;"><h4>Dividend Payout Ratio<h4></td>
+                        <td>
+                            When this feature is working correctly this page will explain to you where you are in the dividend investment cycle. If
+                            you took a position today, would you qualify for the next dividend payment or would you be waiting? <b> {{ yfinance}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:1em;text-align:center;"><h4>Currient Dividend Yeild<h4></td>
+                        <td>
+                            When this feature is working correctly this page will explain to you where you are in the dividend investment cycle. If
+                            you took a position today, would you qualify for the next dividend payment or would you be waiting? <b> {{ yfinance}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:1em;text-align:center;"><h4>Current 12-Month Trailing Dividend Yeild<h4></td>
+                        <td>
+                            When this feature is working correctly this page will explain to you where you are in the dividend investment cycle. If
+                            you took a position today, would you qualify for the next dividend payment or would you be waiting? <b> {{ yfinance}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row-flex">
+            <h2>Would you Like to explore Starting a Position?</h2>
+            </div>
+            
+        
+        
         </div> <!-- End Container.-->
-
-       
-        Whose Declaration Date Is:
 
 {% endblock%}

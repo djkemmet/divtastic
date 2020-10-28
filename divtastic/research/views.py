@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import symbol_lookup_form
 from research.functions import *
+import yfinance as yf
 
 # Create your views here.
 def symbol_research(request):
@@ -17,7 +18,8 @@ def symbol_research(request):
         data = dict()
         data['symbol'] = request.POST['symbol'].upper()
 
-        dividend_com_data = scrape_dividend_com(request.POST['symbol'])
+        symbol = yf.Ticker(request.POST['symbol'])
+        data['yfinance_data'] = symbol.info
 
         # These Come from dividend.com page scrape
         data['company_name'] = 'Source From Dividend.com'

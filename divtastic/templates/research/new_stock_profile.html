@@ -1,19 +1,24 @@
 {% extends 'root/base.html' %}
 
 {% block content %}
-<center><h1>SYMBOL:</h1></center>
-<form id="symbol_lookup_form" method="post" action="/research/new_profile/">
-    {% csrf_token %}
+<center><h1>Enter a Ticker Symbol Below:</h1></center>
+<div class="row-flex">
 
-    {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-    {% endfor %}
+    <form id="symbol_lookup_form" method="post" action="/research/new_profile/">
+        {% csrf_token %}
 
-    {% for field in form.visible_fields %}
-        {{ field.errors }}
-        {{ field.helptext }}
-        {{ field }}
-    {% endfor %}
-    <input type="submit" name="submit" value="Search for symbol">
-</form>
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.helptext }}
+                {{ field }}<br />
+        {% endfor %}
+        <input type="submit" name="submit" value="Search for symbol">
+    </form>
+
+</div
+
 {% endblock%}
