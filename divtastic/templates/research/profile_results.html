@@ -17,24 +17,28 @@
 
                     <table border=1>
                         <tr>
-                            <th style="padding:1em;text-align:center;">Symbol Name</th>
-                            <th style="padding:1em;text-align:center;">Previous Close</th>
-                            <th style="padding:1em;text-align:center;">Dividend Declaration Date</th>
-                            <th style="padding:1em;text-align:center;">Price-to-Earnings Ratio</th>
-                            <th style="padding:1em;text-align:center;">Dividend Payout Ratio</th>
-                            <th style="padding:1em;text-align:center;">Current Record Date</th>
-                            <th style="padding:1em;text-align:center;">Current Dividend Yeild</th>
-                            <th style="padding:1em;text-align:center;">Current Trailing Dividend Yeild</th>
+                            <th style="padding:1em;text-align:center;">Symbol</th>
+                            <th style="padding:1em;text-align:center;"><a href='https://www.investopedia.com/terms/c/close.asp'>Close</a></th>
+                            <th style="padding:1em;text-align:center;">Quote at Profile</th>
+                            <th style="padding:1em;text-align:center;">Next Payout</th>
+                            <th style="padding:1em;text-align:center;"><a href='https://www.investopedia.com/terms/p/paymentdate.asp'>Next Payout Date</a></th>
+                            <th style="padding:1em;text-align:center;"> <a href="https://www.investopedia.com/ask/answers/090415/dividend-income-taxable.asp">Tax Mode</a></th>
+                            <th style="padding:1em;text-align:center;">Frequency</th>
+                            <th style="padding:1em;text-align:center;">Consecutive Growth</th>
+                            <th style="padding:1em;text-align:center;"><a href='https://www.investopedia.com/terms/p/payoutratio.asp'>Payout Ratio</th>
+                            <th style="padding:1em;text-align:center;"><a href='https://www.investopedia.com/terms/d/dividendyield.asp'>Current Trailing Dividend Yeild</a></th>
                             
                         </tr>
                         <tr>
-                            <td style="text-align:center; padding:.5em;"> {{ symbol }}</td>
-                            <td style="text-align:center; padding:.5em;"> {{ yfinance_data.previousClose }}</td>
-                            <td style="text-align:center; padding:.5em;">{{ declaration_date}}</td>
-                            <td style="text-align:center; padding:.5em;">{{ pte_ratio }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ symbol }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ yfinance_data.previousClose }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ latest_quote }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ next_payout }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ next_payout_date }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ tax_mode }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ frequency }}</td>
+                            <td style="text-align:center; padding:.5em;">{{ consecutive_increase }}</td>
                             <td style="text-align:center; padding:.5em;">{{ payout_ratio }}</td>
-                            <td style="text-align:center; padding:.5em;">{{ record_date}}</td>
-                            <td style="text-align:center; padding:.5em;">{{ dividend_yeild }}</td>
                             <td style="text-align:center; padding:.5em;">{{ yfinance_data.trailingAnnualDividendYield }}</td>
                         </tr>
                     </table>
@@ -107,8 +111,9 @@
                     </tr>
                 </table>
             </div>
-            <div class="row-flex">
-            <h2>Would you Like to explore Starting a Position?</h2>
+            <div class="row-flex" style="padding:1em;">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Add To Portfolio Idea</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Run a Play</button>
             </div>
             
         
