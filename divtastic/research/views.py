@@ -16,7 +16,6 @@ def symbol_research(request):
 
     # If the form is good, go get all the data.
     if form.is_valid():
-        
         data = dict()
         data['symbol'] = request.POST['symbol'].upper()
 
@@ -33,15 +32,42 @@ def symbol_research(request):
 
         html = response.text
         dom = etree.HTML(html)
-
-        data['tax_type'] = 'Source From Dividend.com'
-        data['frequency'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[3]/div[1]/section/div[2]/div/div[1]/div[5]/div[2]/text()')[0]
-        data['consecutive_increase'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[3]/div[1]/section/div[2]/div/div[1]/div[4]/div[2]/text()')[0]
-        data['payout_ratio'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[3]/div[1]/section/div[2]/div/div[1]/div[3]/div[2]/text()')[0]
-        data['next_payout'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/text()')[0]
-        data['next_payout_date'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/text()')[0]
-        data['tax_mode'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]/text()')[0]
-        data['latest_quote'] = dom.xpath('/html/body/main/div[5]/div[1]/section/div/div[2]/div[2]/div[1]/div[2]/div[2]/text()')[0].strip('\n')
+        
+        try:
+            data['frequency'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[3]/div[1]/section/div[2]/div/div[1]/div[5]/div[2]/text()')[0]
+        except Exception as e:
+            data['frequency'] = "Data not found."
+        
+        
+        try:
+            data['consecutive_increase'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[3]/div[1]/section/div[2]/div/div[1]/div[4]/div[2]/text()')[0]
+        except Exception as e:
+            data['consecutive_increase'] = "Data not found."
+        
+        try:
+            data['payout_ratio'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[3]/div[1]/section/div[2]/div/div[1]/div[3]/div[2]/text()')[0]
+        except Exception as e:
+            data['payout_ratio'] = "Data not found."
+        
+        try:
+            data['next_payout'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/text()')[0]
+        except Exception as e:
+            data['next_payout'] = "Data not found."
+        
+        try:
+            data['next_payout_date'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/text()')[0]
+        except Exception as e:
+            data['next_payout_date'] = "Data not found."
+        
+        try:
+            data['tax_mode'] = dom.xpath('/html/body/main/section/section[1]/div/div/div/article/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]/text()')[0]
+        except Exception as e:
+            data['tax_mode'] = "Data not found."
+        
+        try:
+            data['latest_quote'] = dom.xpath('/html/body/main/div[5]/div[1]/section/div/div[2]/div[2]/div[1]/div[2]/div[2]/text()')[0].strip('\n')
+        except Exception as e:
+            data['latest_quote'] = "Data not Found."
 
         # Return a profile_results.html template here with the data returned from, 
         # this function i guess?
